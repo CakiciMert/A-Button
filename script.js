@@ -1,10 +1,19 @@
 
+  window.onload = function() {
+    // Get the score from local storage.
+    var highscore = localStorage.getItem('highscore');
+  
+    // Update the score on the screen.
+    document.getElementById('highscore').innerHTML = highscore;
+  };
+
 const button = document.getElementById('button');
 
+// Add an event listener to the button.
 button.addEventListener('click', () => {
   // Get the current score.
   var score = parseInt(document.getElementById('score').innerHTML);
-
+    var highscore=localStorage.getItem('highscore');
 
   if(Math.floor(Math.random()*(100-score)))
   {
@@ -12,6 +21,13 @@ button.addEventListener('click', () => {
   }
   else
   {
+    if(score>highscore)
+    {
+        highscore=score;
+        document.getElementById('highscore').innerHTML = highscore;
+        localStorage.setItem('highscore', highscore)
+    }
+    
     score=0;
     alert('Sorry you lost the game');
   }
@@ -26,3 +42,4 @@ button.addEventListener('click', () => {
     alert('Game over!');
   }
 });
+
