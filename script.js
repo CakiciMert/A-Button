@@ -1,10 +1,27 @@
 
   window.onload = function() {
-    // Get the score from local storage.
-    var highscore = localStorage.getItem('highscore');
+   ///// if it is first time loading
+    if(!localStorage.getItem('totalScore')) {
+      localStorage.setItem('totalScore', 0);
+    }
+    if(!localStorage.getItem('highScore')) {
+      localStorage.setItem('highScore', 0);
+
+
+    }
+    /////
+
+    /////getting data from storage///
+    var totalScore =localStorage.getItem('totalScore');
+    var highScore = localStorage.getItem('highScore');    
+    document.getElementById('highScore').innerHTML = highScore;
+    document.getElementById('totalScore').innerHTML = totalScore;
+  };
   
-    // Update the score on the screen.
-    document.getElementById('highscore').innerHTML = highscore;
+  // Save the score to local storage when the page is closed.
+  window.onbeforeunload = function () {
+    localStorage.setItem('totalScore', document.getElementById('totalScore').innerHTML);
+    localStorage.setItem('highScore', document.getElementById('highScore').innerHTML);
   };
 
 const button = document.getElementById('button');
@@ -13,19 +30,20 @@ const button = document.getElementById('button');
 button.addEventListener('click', () => {
   // Get the current score.
   var score = parseInt(document.getElementById('score').innerHTML);
-    var highscore=localStorage.getItem('highscore');
-
-  if(Math.floor(Math.random()*(100-score)))
+  var totalScore = parseInt(document.getElementById('totalScore').innerHTML);
+  var highScore=parseInt(document.getElementById('highScore').innerHTML);
+  if(Math.floor(Math.floor(Math.random()*100)> score))
   {
     score++;
+    totalScore++;
   }
   else
   {
-    if(score>highscore)
+    if(score>highScore)
     {
-        highscore=score;
-        document.getElementById('highscore').innerHTML = highscore;
-        localStorage.setItem('highscore', highscore)
+        highScore=score;
+        document.getElementById('highScore').innerHTML = highScore;
+        localStorage.setItem('highScore', highScore);
     }
     
     score=0;
@@ -35,6 +53,7 @@ button.addEventListener('click', () => {
 
   // Update the score on the screen.
   document.getElementById('score').innerHTML = score;
+  document.getElementById('totalScore').innerHTML = totalScore;
 
   // Check if the game is over.
   if (score === 100) {
