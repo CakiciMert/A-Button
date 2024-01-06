@@ -2,16 +2,24 @@
 <html>
 <head>
   <title>Clicker Game</title>
+  <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-  <h1>Clicker Game</h1>
-  <p>Your score: <span id="score">0</span></p>
+  <h1>Clicker Game </h1>
+  
   <button id="button">Click me!</button>
+  <h1>Wanna Reverse</h1>
+  <button id="ReverseButton">Click me!</button>
+  <p>You are idiot(how many times you clicked without getting anything) :<span id="idiot">0</span></p>
 
-  <script src="script.js"></script>
-  <script type="text/javascript">
-  </script>
+  <p>Your score: <span id="score">0</span></p>
   <p>Your High score: <span id="highScore">0</span></p>
-  <p>Your Total score: <span id="totalScore">0</span></p>
+  <p>Your Total score: <span id="totalScore">0</span> <span id ="playGameScore" ></span></p>
+  <br>
+  <input type="range" id="slider" min="0" max="100" value="0">
+  <button id="playButton">PLay me!</button>
 </body>
+<script src="script.js"></script>
+<script type="text/javascript"></script>
 </html>
